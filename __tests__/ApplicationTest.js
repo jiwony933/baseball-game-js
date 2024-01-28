@@ -92,23 +92,23 @@ describe("check score unit test", () => {
     const userNumbers4 = [4, 5, 6];
     const userNumbers5 = [1, 4, 5];
 
-    expect(app.checkScore(userNumbers1)).toBe({
+    expect(app.checkScore(userNumbers1)).toEqual({
       strike: 3,
       ball: 0,
     });
-    expect(app.checkScore(userNumbers2)).toBe({
-      strike: 2,
-      ball: 1,
+    expect(app.checkScore(userNumbers2)).toEqual({
+      strike: 1,
+      ball: 2,
     });
-    expect(app.checkScore(userNumbers3)).toBe({
+    expect(app.checkScore(userNumbers3)).toEqual({
       strike: 0,
       ball: 3,
     });
-    expect(app.checkScore(userNumbers4)).toBe({
+    expect(app.checkScore(userNumbers4)).toEqual({
       strike: 0,
       ball: 0,
     });
-    expect(app.checkScore(userNumbers5)).toBe({
+    expect(app.checkScore(userNumbers5)).toEqual({
       strike: 1,
       ball: 0,
     });
