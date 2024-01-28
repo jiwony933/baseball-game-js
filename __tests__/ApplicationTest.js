@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { makeRandomNumber, makeRandomNumbers } from "../src/utils.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -56,5 +57,26 @@ describe("숫자 야구 게임", () => {
     const app = new App();
 
     await expect(app.play()).rejects.toThrow("[ERROR]");
+  });
+});
+
+describe("unit test", () => {
+  test("1~9 사이의 랜덤한 하나의 숫자를 만든다.", () => {
+    const number = makeRandomNumber();
+
+    expect(number).toBeGreaterThanOrEqual(1);
+    expect(number).toBeLessThanOrEqual(9);
+
+    expect(number).not.toBe(10);
+    expect(number).not.toBe(0);
+  });
+
+  test("각자 다른 세자리 숫자를 만든다.", () => {
+    const numbers = makeRandomNumbers();
+
+    expect(numbers.length).toBe(3);
+    expect(numbers[0]).not.toBe(numbers[1]);
+    expect(numbers[0]).not.toBe(numbers[2]);
+    expect(numbers[1]).not.toBe(numbers[2]);
   });
 });
