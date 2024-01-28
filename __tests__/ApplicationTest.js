@@ -1,6 +1,10 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { makeRandomNumber, makeRandomNumbers } from "../src/utils.js";
+import {
+  makeRandomNumber,
+  makeRandomNumbers,
+  printScoreMessage,
+} from "../src/utils.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -112,5 +116,37 @@ describe("check score unit test", () => {
       strike: 1,
       ball: 0,
     });
-  });
+  }),
+    test("점수에 대한 메시지를 출력한다.", () => {
+      const logSpy = getLogSpy();
+
+      const score1 = { strike: 0, ball: 0 };
+      const score2 = { strike: 1, ball: 0 };
+      const score3 = { strike: 0, ball: 1 };
+      const score4 = { strike: 2, ball: 1 };
+      const score5 = { strike: 1, ball: 2 };
+      const score6 = { strike: 3, ball: 0 };
+      const score7 = { strike: 0, ball: 3 };
+
+      printScoreMessage(score1);
+      expect(logSpy).toHaveBeenCalledWith("낫싱");
+
+      printScoreMessage(score2);
+      expect(logSpy).toHaveBeenCalledWith("1스트라이크");
+
+      printScoreMessage(score3);
+      expect(logSpy).toHaveBeenCalledWith("1볼");
+
+      printScoreMessage(score4);
+      expect(logSpy).toHaveBeenCalledWith("2스트라이크 1볼");
+
+      printScoreMessage(score5);
+      expect(logSpy).toHaveBeenCalledWith("1스트라이크 2볼");
+
+      printScoreMessage(score6);
+      expect(logSpy).toHaveBeenCalledWith("3스트라이크");
+
+      printScoreMessage(score7);
+      expect(logSpy).toHaveBeenCalledWith("3볼");
+    });
 });
