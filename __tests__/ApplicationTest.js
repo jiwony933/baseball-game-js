@@ -60,7 +60,7 @@ describe("숫자 야구 게임", () => {
   });
 });
 
-describe("unit test", () => {
+describe("random number unit test", () => {
   test("1~9 사이의 랜덤한 하나의 숫자를 만든다.", () => {
     const number = makeRandomNumber();
 
