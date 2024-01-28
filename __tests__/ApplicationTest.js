@@ -80,3 +80,37 @@ describe("random number unit test", () => {
     expect(numbers[1]).not.toBe(numbers[2]);
   });
 });
+
+describe("check score unit test", () => {
+  test("입력한 숫자에 대한 점수를 매긴다", () => {
+    const app = new App();
+
+    app.randomNumbers = [1, 2, 3];
+    const userNumbers1 = [1, 2, 3];
+    const userNumbers2 = [1, 3, 2];
+    const userNumbers3 = [2, 3, 1];
+    const userNumbers4 = [4, 5, 6];
+    const userNumbers5 = [1, 4, 5];
+
+    expect(app.checkScore(userNumbers1)).toBe({
+      strike: 3,
+      ball: 0,
+    });
+    expect(app.checkScore(userNumbers2)).toBe({
+      strike: 2,
+      ball: 1,
+    });
+    expect(app.checkScore(userNumbers3)).toBe({
+      strike: 0,
+      ball: 3,
+    });
+    expect(app.checkScore(userNumbers4)).toBe({
+      strike: 0,
+      ball: 0,
+    });
+    expect(app.checkScore(userNumbers5)).toBe({
+      strike: 1,
+      ball: 0,
+    });
+  });
+});
